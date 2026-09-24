@@ -116,9 +116,12 @@ nav a:hover::after, nav a.active::after { transform: scaleX(1); }
 .media-section { display: grid; grid-template-columns: 1.3fr 1fr auto; gap: 44px; align-items: center; border-bottom: 1px solid var(--border); }
 .media-section h2 { margin-bottom: 0; }
 .interview-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-.interview-link { min-height: 70px; display: flex; align-items: center; gap: 13px; padding: 16px 18px; background: var(--background); color: var(--muted-foreground); font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
+.interview-link { min-height: 76px; display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 13px; padding: 16px 18px; background: var(--background); color: var(--muted-foreground); font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
 .interview-link:hover { color: var(--primary); background: var(--secondary); }
 .play-icon { color: var(--primary); }
+.interview-number { min-width: 28px; color: var(--foreground); font-family: var(--font-serif); font-size: 16px; text-transform: none; }
+.interview-title { letter-spacing: 0; text-transform: none; }
+.interview-watch { color: var(--primary); font-size: 8px; }
 
 .recognition-section { background: var(--secondary); }
 .recognition-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 210px; gap: 12px; }
@@ -255,9 +258,16 @@ footer { padding: 58px clamp(24px, 6vw, 94px) 22px; background: var(--background
   .media-section { display: block; }
   .media-section .button { margin-top: 28px; }
   .interview-grid { grid-template-columns: 1fr; margin-top: 28px; }
+  .interview-link { min-height: 64px; grid-template-columns: 26px 28px minmax(0, 1fr) auto; gap: 8px; padding: 12px 14px; border-radius: 6px; }
+  .interview-grid { gap: 8px; border: 0; background: transparent; }
+  .interview-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 9px; }
+  .recognition-section { padding-right: 14px; padding-left: 14px; }
+  .recognition-section .section-heading { margin-right: 8px; margin-left: 8px; }
   .recognition-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-  .recognition-grid figure, .recognition-grid figure:first-child, .recognition-grid figure:nth-child(4), .recognition-grid figure:nth-child(5) { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; }
-  .recognition-grid figure:first-child { aspect-ratio: 16 / 9; }
+  .recognition-grid { display: flex; gap: 12px; overflow-x: auto; padding: 0 8px 12px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .recognition-grid::-webkit-scrollbar { display: none; }
+  .recognition-grid figure, .recognition-grid figure:first-child, .recognition-grid figure:nth-child(4), .recognition-grid figure:nth-child(5) { flex: 0 0 84%; aspect-ratio: 4 / 3; border-radius: 8px; scroll-snap-align: center; }
+  .recognition-video { margin: 16px 8px 0; }
   .contact-portrait, .contact-portrait img { min-height: 420px; }
   .contact-copy dl div { grid-template-columns: 1fr; gap: 7px; }
   .contact-socials { align-items: stretch; flex-direction: column; }

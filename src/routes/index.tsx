@@ -114,6 +114,7 @@ const recognitionImages = [
 ];
 
 const navItems = ["Home", "About", "Media", "Books", "Newsletter", "Contact"];
+const instagramUrl = "https://www.instagram.com/reels/DUtkk0jkmXf/";
 
 function SophiaStewartPage() {
   const [showAmazonPopup, setShowAmazonPopup] = useState(false);
@@ -162,6 +163,7 @@ function SophiaStewartPage() {
               {item}
             </a>
           ))}
+          <a href="/fan-club">Fan Club</a>
         </nav>
       </header>
 
@@ -263,7 +265,9 @@ function SophiaStewartPage() {
           {interviews.slice(1).map((interview) => (
             <a key={interview.url} className="interview-link" href={interview.url} target="_blank" rel="noreferrer">
               <span className="play-icon" aria-hidden="true">▶</span>
-              <span>{interview.label}</span>
+              <span className="interview-number">{interview.label.replace("Interview ", "")}</span>
+              <span className="interview-title">Sophia Stewart in conversation</span>
+              <span className="interview-watch">Watch</span>
             </a>
           ))}
         </div>
@@ -312,7 +316,7 @@ function SophiaStewartPage() {
           <div className="contact-socials">
             <a className="button button-outline" href="https://www.facebook.com/SophiaStewartMatrix/" target="_blank" rel="noreferrer">Facebook</a>
             <a className="button button-outline" href="https://www.facebook.com/reel/1408308784081129" target="_blank" rel="noreferrer">Featured Reel</a>
-            <span className="social-placeholder">Instagram coming soon</span>
+            <a className="button button-outline" href={instagramUrl} target="_blank" rel="noreferrer">Instagram</a>
           </div>
           <p className="contact-note">Contact info to be confirmed and updated.</p>
         </div>
@@ -331,10 +335,12 @@ function SophiaStewartPage() {
           </a>
           <div className="footer-links">
             {navItems.map((item) => <a href={`#${item.toLowerCase()}`} key={item}>{item}</a>)}
+            <a href="/fan-club">Fan Club</a>
           </div>
           <div className="social-links" aria-label="Social media">
             <a href={interviewPlaylistUrl} target="_blank" rel="noreferrer" aria-label="YouTube">yt</a>
             <a href="https://www.facebook.com/SophiaStewartMatrix/" target="_blank" rel="noreferrer" aria-label="Facebook">f</a>
+            <a href={instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram">ig</a>
           </div>
         </div>
         <div className="footer-bottom">
