@@ -234,7 +234,7 @@ function SophiaStewartPage() {
         </div>
         <div className="recognition-grid">
           {recognitionImages.map((image) => (
-            <figure key={image.src}><img src={image.src} alt={image.alt} loading="lazy" /></figure>
+            <figure key={image.src}><img src={image.src} alt={image.alt} /></figure>
           ))}
         </div>
       </section>
@@ -254,7 +254,7 @@ function SophiaStewartPage() {
 
       <section className="contact-section content-section" id="contact">
         <div className="contact-portrait">
-          <img src={contactPortraitAsset.url} alt="Portrait of Sophia Stewart" loading="lazy" />
+          <img src={contactPortraitAsset.url} alt="Portrait of Sophia Stewart" />
         </div>
         <div className="contact-copy">
           <p className="section-kicker">Contact</p>
