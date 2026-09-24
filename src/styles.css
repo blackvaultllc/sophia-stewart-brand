@@ -73,8 +73,10 @@ nav a:hover::after, nav a.active::after { transform: scaleX(1); }
 .button-outline { background: transparent; color: var(--primary); }
 .button-outline:hover { background: var(--primary); color: var(--primary-foreground); }
 .hero-photo, .about-photo { position: relative; display: grid; place-items: center; overflow: hidden; color: var(--muted-foreground); background-color: var(--surface-soft); background-position: center; background-size: cover; }
-.hero-photo { min-height: 620px; background-image: linear-gradient(90deg, var(--background) 0%, transparent 24%), linear-gradient(135deg, oklch(0.14 0.025 72 / 70%), oklch(0.08 0.01 65 / 25%)), url('/images/sophia-stewart-hero.jpg'); }
-.hero-photo::before, .about-photo::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 17%, oklch(0.08 0.01 65 / 55%) 17% 18%, transparent 18% 34%); opacity: .35; }
+.hero-photo { min-height: 620px; }
+.hero-photo img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center 28%; }
+.hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--background) 0%, transparent 23%), linear-gradient(180deg, transparent 70%, oklch(0.08 0.01 65 / 28%)); pointer-events: none; }
+.about-photo::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 17%, oklch(0.08 0.01 65 / 55%) 17% 18%, transparent 18% 34%); opacity: .35; }
 .hero-photo span, .about-photo span { position: relative; z-index: 1; padding: 10px 13px; border: 1px solid var(--border); color: var(--muted-foreground); background: oklch(0.1 0.006 75 / 75%); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
 
 .pillar-band { display: grid; grid-template-columns: repeat(5, 1fr); padding: 28px clamp(20px, 4vw, 65px); background: var(--secondary); border-bottom: 1px solid var(--border); }
@@ -146,7 +148,8 @@ footer { padding: 58px clamp(24px, 6vw, 94px) 22px; background: var(--background
   .site-header nav { display: none; }
   .hero { grid-template-columns: 1fr; }
   .hero-copy { min-height: 600px; padding-top: 60px; }
-  .hero-photo { min-height: 560px; background-image: linear-gradient(0deg, var(--background), transparent 24%), linear-gradient(135deg, oklch(0.14 0.025 72 / 50%), transparent), url('/images/sophia-stewart-hero.jpg'); }
+  .hero-photo { min-height: 560px; }
+  .hero-photo::after { background: linear-gradient(0deg, var(--background), transparent 22%); }
   .pillar-band { grid-template-columns: repeat(2, 1fr); }
   .pillar { padding: 24px 16px; border-bottom: 1px solid var(--border); }
   .pillar:nth-child(even) { border-right: 0; }
