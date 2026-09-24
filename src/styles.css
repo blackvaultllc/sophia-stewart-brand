@@ -74,7 +74,7 @@ nav a:hover::after, nav a.active::after { transform: scaleX(1); }
 .button-outline:hover { background: var(--primary); color: var(--primary-foreground); }
 .hero-photo, .about-photo { position: relative; display: grid; place-items: center; overflow: hidden; color: var(--muted-foreground); background-color: var(--surface-soft); background-position: center; background-size: cover; }
 .hero-photo { min-height: 620px; }
-.hero-photo img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center 28%; }
+.hero-photo img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: 62% center; }
 .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--background) 0%, transparent 23%), linear-gradient(180deg, transparent 70%, oklch(0.08 0.01 65 / 28%)); pointer-events: none; }
 .about-photo::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 17%, oklch(0.08 0.01 65 / 55%) 17% 18%, transparent 18% 34%); opacity: .35; }
 .hero-photo span, .about-photo span { position: relative; z-index: 1; padding: 10px 13px; border: 1px solid var(--border); color: var(--muted-foreground); background: oklch(0.1 0.006 75 / 75%); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
@@ -108,7 +108,9 @@ nav a:hover::after, nav a.active::after { transform: scaleX(1); }
 .text-link { display: inline-flex; gap: 8px; margin-top: 11px; padding-bottom: 5px; border-bottom: 1px solid var(--primary); color: var(--primary); font-size: 9px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 
 .about-section { display: grid; grid-template-columns: 52% 48%; min-height: 590px; background: var(--secondary); }
-.about-photo { min-height: 520px; background-image: linear-gradient(90deg, transparent 60%, var(--secondary)), linear-gradient(180deg, transparent, oklch(0.08 0.01 65 / 55%)), url('/images/sophia-stewart-about.jpg'); }
+.about-photo { min-height: 520px; }
+.about-photo img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: 62% center; }
+.about-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 60%, var(--secondary)), linear-gradient(180deg, transparent 72%, oklch(0.08 0.01 65 / 35%)); pointer-events: none; }
 .about-copy { display: flex; flex-direction: column; justify-content: center; padding: 70px clamp(32px, 6vw, 96px); }
 .about-copy .lead { color: var(--cream); font-family: var(--font-serif); font-size: 18px; line-height: 1.7; }
 .about-copy > p:not(.section-kicker):not(.lead) { color: var(--muted-foreground); font-size: 13px; line-height: 1.8; }
@@ -159,14 +161,16 @@ footer { padding: 58px clamp(24px, 6vw, 94px) 22px; background: var(--background
   .book-cover { width: 100%; }
   .about-section { grid-template-columns: 1fr; }
   .about-photo { min-height: 460px; }
+  .about-photo::after { background: linear-gradient(0deg, var(--secondary), transparent 22%); }
   .newsletter-section { grid-template-columns: 1fr; gap: 28px; }
   .footer-top { grid-template-columns: 1fr; gap: 28px; }
 }
 
 @media (max-width: 520px) {
   .hero-copy { min-height: auto; padding: 64px 24px 55px; }
-  .hero h1 { font-size: 50px; }
-  .hero-photo { min-height: 480px; }
+  .hero h1 { font-size: 46px; }
+  .hero-photo { min-height: 430px; }
+  .hero-photo img { object-position: 68% center; }
   .hero-actions { align-items: stretch; flex-direction: column; }
   .button { width: 100%; }
   .pillar-band { grid-template-columns: 1fr; }
@@ -176,6 +180,7 @@ footer { padding: 58px clamp(24px, 6vw, 94px) 22px; background: var(--background
   .book-card { grid-template-columns: 1fr; }
   .book-cover { width: min(78%, 240px); }
   .about-photo { min-height: 390px; }
+  .about-photo img { object-position: 68% center; }
   .about-copy { padding: 62px 24px; }
   .media-section { display: block; }
   .media-section .button { margin-top: 28px; }
