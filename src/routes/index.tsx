@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import sophiaPortrait from "../assets/sophia-clean-portrait.jpg";
 import thirdEyeAsset from "../assets/the-third-eye.webp.asset.json";
 import matrixTriviaAsset from "../assets/matrix-trivia.jpg.asset.json";
@@ -91,7 +92,13 @@ const interviews = [
   { label: "Interview XI", url: "https://www.youtube.com/watch?v=HuK25xsoPeA" },
   { label: "Interview XII", url: "https://www.youtube.com/watch?v=eg6j5z1rWNU" },
   { label: "Interview XIII", url: "https://www.youtube.com/watch?v=RT4mGNKQtrM" },
+  { label: "Interview XIV", url: "https://www.youtube.com/watch?v=WNoZLzXz5kI" },
+  { label: "Interview XV", url: "https://www.youtube.com/watch?v=hhKa22fXtt8" },
+  { label: "Interview XVI", url: "https://www.youtube.com/watch?v=P1TZN9gPajM" },
+  { label: "Interview XVII", url: "https://www.youtube.com/watch?v=EBz1nwiUc0I" },
 ];
+
+const amazonBooksUrl = sellers[0].url("Sophia Stewart books");
 
 const interviewPlaylistUrl = "https://www.youtube.com/playlist?list=PL-cC-ldlOk61ULP39M65Nkmv6XqpR0jDL";
 
