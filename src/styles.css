@@ -209,8 +209,46 @@ footer { padding: 58px clamp(24px, 6vw, 94px) 22px; background: var(--background
   .pillar { border-right: 0; }
   .pillar:last-child { grid-column: auto; }
   .content-section { padding-top: 75px; padding-bottom: 75px; }
-  .book-card { grid-template-columns: 1fr; }
-  .book-cover { width: min(78%, 240px); }
+  .books-section { padding: 58px 14px 64px; background: var(--secondary); }
+  .books-section .section-heading { margin: 0 7px 25px; }
+  .books-section .section-heading h2 { margin-bottom: 9px; font-size: 31px; }
+  .books-section .section-heading > p:last-child { font-size: 12px; line-height: 1.6; }
+  .book-grid { gap: 12px; }
+  .book-card {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 15px;
+    align-items: start;
+    min-height: 174px;
+    padding: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-raised);
+    box-shadow: 0 12px 30px oklch(0.03 0 0 / 28%);
+  }
+  .book-cover { width: 96px; aspect-ratio: 2 / 3; border-radius: 2px; box-shadow: 0 8px 18px oklch(0.03 0 0 / 42%); }
+  .book-copy { min-width: 0; }
+  .book-eyebrow { font-size: 7px; }
+  .book-copy h3 { margin: 5px 0 7px; font-size: 17px; line-height: 1.18; }
+  .book-copy > p:not(.book-eyebrow):not(.buy-label) { margin: 0; color: var(--muted-foreground); font-family: var(--font-sans); font-size: 10px; line-height: 1.45; }
+  .buy-label { margin: 11px 0 7px; font-size: 7px !important; }
+  .buy-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .buy-links a {
+    min-height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--cream);
+    background: var(--background);
+    font-size: 7px;
+    line-height: 1.15;
+    text-align: center;
+  }
+  .buy-links a:first-child { border-color: var(--primary); background: var(--primary); color: var(--primary-foreground); }
+  .buy-links a:last-child { grid-column: 1 / -1; }
   .about-photo { min-height: 390px; }
   .about-photo img { object-position: 68% center; }
   .about-copy { padding: 62px 24px; }
