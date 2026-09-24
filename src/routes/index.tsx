@@ -1,5 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import sophiaPortrait from "../assets/sophia-clean-portrait.jpg";
+import thirdEyeAsset from "../assets/the-third-eye.webp.asset.json";
+import matrixTriviaAsset from "../assets/matrix-trivia.jpg.asset.json";
+import matrixEvolutionAsset from "../assets/matrix-cracking-the-genetic-code.webp.asset.json";
+import motherMatrixAsset from "../assets/mother-of-the-matrix.jpg.asset.json";
+import contactPortraitAsset from "../assets/sophia-stewart-contact.jpg.asset.json";
+import galaPortraitAsset from "../assets/sophia-stewart-gala.jpg.asset.json";
+import galaPosterAsset from "../assets/golden-gala-attendees.jpg.asset.json";
+import recognitionBooksAsset from "../assets/recognition-and-books.jpg.asset.json";
+import congressionalFolderAsset from "../assets/congressional-recognition-folder.jpg.asset.json";
+import congressionalCertificateAsset from "../assets/congressional-recognition-certificate.jpg.asset.json";
+import bookCollectionAsset from "../assets/sophia-stewart-books-collection.jpg.asset.json";
+import matrixCollageAsset from "../assets/sophia-stewart-matrix-collage.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,22 +46,61 @@ const pillars = [
 const books = [
   {
     title: "The Third Eye",
-    eyebrow: "A visionary work",
-    hook: "A bold exploration of imagination, authorship, and the power behind an original idea.",
-    mark: "III",
+    hook: "Sophia Stewart’s original 1981 manuscript and treatment.",
+    image: thirdEyeAsset.url,
+  },
+  {
+    title: "Matrix Trivia",
+    hook: "A trivia companion connecting scenes and ideas to The Third Eye.",
+    image: matrixTriviaAsset.url,
+  },
+  {
+    title: "Matrix 4: Cracking the Genetic Code",
+    hook: "Also known as The Evolution, continuing the world of The Third Eye.",
+    image: matrixEvolutionAsset.url,
   },
   {
     title: "Mother of the Matrix",
-    eyebrow: "The story behind the story",
-    hook: "The extraordinary creative journey that inspired a cultural phenomenon.",
-    mark: "M",
+    hook: "Co-written with Hannibal Zulu, covering the lawsuit and related court filings.",
+    image: motherMatrixAsset.url,
   },
-  {
-    title: "The Matrix: Evolution",
-    eyebrow: "The legacy continues",
-    hook: "A deeper look into an evolving universe of ideas, identity, and truth.",
-    mark: "E",
-  },
+];
+
+const sellers = [
+  { name: "Amazon", url: (title: string) => `https://www.amazon.com/s?k=${encodeURIComponent(title + " Sophia Stewart")}` },
+  { name: "eBay", url: (title: string) => `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(title + " Sophia Stewart")}` },
+  { name: "AbeBooks", url: (title: string) => `https://www.abebooks.com/servlet/SearchResults?kn=${encodeURIComponent(title + " Sophia Stewart")}` },
+  { name: "ThriftBooks", url: (title: string) => `https://www.thriftbooks.com/browse/?b.search=${encodeURIComponent(title + " Sophia Stewart")}` },
+  { name: "Barnes & Noble", url: (title: string) => `https://www.barnesandnoble.com/s/${encodeURIComponent(title + " Sophia Stewart")}` },
+];
+
+const interviews = [
+  { label: "Sophia Stewart Interview Playlist", url: "https://www.youtube.com/playlist?list=PL-cC-ldlOk61ULP39M65Nkmv6XqpR0jDL" },
+  { label: "Interview I", url: "https://www.youtube.com/watch?v=1redS2eOA5k" },
+  { label: "Interview II", url: "https://www.youtube.com/watch?v=2-3hU3vs9K8" },
+  { label: "Interview III", url: "https://www.youtube.com/watch?v=NeT7sRdOK9I" },
+  { label: "Interview IV", url: "https://www.youtube.com/watch?v=vaazYWt6Mio" },
+  { label: "Interview V", url: "https://www.youtube.com/watch?v=YlYej2ePc90" },
+  { label: "Interview VI", url: "https://www.youtube.com/watch?v=tjrpMZXPyKY" },
+  { label: "Interview VII", url: "https://www.youtube.com/watch?v=GepVD1bxGwY" },
+  { label: "Interview VIII", url: "https://www.youtube.com/watch?v=OZnqKn9lHoQ" },
+  { label: "Interview IX", url: "https://www.youtube.com/watch?v=5z-nZL-zFPI" },
+  { label: "Interview X", url: "https://www.youtube.com/watch?v=FQQVUKQ3oGU" },
+  { label: "Interview XI", url: "https://www.youtube.com/watch?v=HuK25xsoPeA" },
+  { label: "Interview XII", url: "https://www.youtube.com/watch?v=eg6j5z1rWNU" },
+  { label: "Interview XIII", url: "https://www.youtube.com/watch?v=RT4mGNKQtrM" },
+];
+
+const interviewPlaylistUrl = "https://www.youtube.com/playlist?list=PL-cC-ldlOk61ULP39M65Nkmv6XqpR0jDL";
+
+const recognitionImages = [
+  { src: galaPortraitAsset.url, alt: "Sophia Stewart at the eZWay Golden Gala" },
+  { src: galaPosterAsset.url, alt: "eZWay Golden Gala celebrity attendees announcement featuring Sophia Stewart" },
+  { src: recognitionBooksAsset.url, alt: "Sophia Stewart books displayed with a certificate of recognition" },
+  { src: congressionalFolderAsset.url, alt: "United States House of Representatives recognition folder" },
+  { src: congressionalCertificateAsset.url, alt: "Congressional certificate presented to Sophia Stewart" },
+  { src: bookCollectionAsset.url, alt: "Collection of books by Sophia Stewart" },
+  { src: matrixCollageAsset.url, alt: "Sophia Stewart and Matrix-themed collage" },
 ];
 
 const navItems = ["Home", "About", "Media", "Books", "Newsletter", "Contact"];
@@ -115,21 +166,24 @@ function SophiaStewartPage() {
         <div className="section-heading">
           <p className="section-kicker">Written Legacy</p>
           <h2>Books by Sophia Stewart</h2>
-          <p>Original works shaped by vision, conviction, and an uncompromising creative voice.</p>
+          <p>Explore the original works, companion volume, and documented story behind the creative legacy.</p>
         </div>
         <div className="book-grid">
-          {books.map((book, index) => (
+          {books.map((book) => (
             <article className="book-card" key={book.title}>
-              <div className={`book-cover book-cover-${index + 1}`}>
-                <span className="cover-mark">{book.mark}</span>
-                <small>Sophia Stewart</small>
-                <strong>{book.title}</strong>
+              <div className="book-cover">
+                <img src={book.image} alt={`${book.title} book cover`} loading="lazy" />
               </div>
               <div className="book-copy">
-                <p className="book-eyebrow">{book.eyebrow}</p>
+                <p className="book-eyebrow">By Sophia Stewart</p>
                 <h3>{book.title}</h3>
                 <p>{book.hook}</p>
-                <a className="text-link" href="#contact">View Book <span aria-hidden="true">→</span></a>
+                <p className="buy-label">Where to buy</p>
+                <div className="buy-links">
+                  {sellers.map((seller) => (
+                    <a key={seller.name} href={seller.url(book.title)} target="_blank" rel="noreferrer">{seller.name}</a>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
@@ -160,8 +214,29 @@ function SophiaStewartPage() {
           <p className="section-kicker">In Conversation</p>
           <h2>Ideas that deserve to be heard.</h2>
         </div>
-        <p>Explore interviews, podcasts, and appearances featuring Sophia&apos;s story in her own words.</p>
-        <a className="button button-outline" href="#contact">View Media</a>
+        <p>Watch Sophia&apos;s interviews and appearances in her own words.</p>
+        <a className="button button-outline" href={interviewPlaylistUrl} target="_blank" rel="noreferrer">Watch Playlist</a>
+        <div className="interview-grid">
+          {interviews.slice(1).map((interview) => (
+            <a key={interview.url} className="interview-link" href={interview.url} target="_blank" rel="noreferrer">
+              <span className="play-icon" aria-hidden="true">▶</span>
+              <span>{interview.label}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="recognition-section content-section" aria-labelledby="recognition-heading">
+        <div className="section-heading">
+          <p className="section-kicker">Milestones &amp; Recognition</p>
+          <h2 id="recognition-heading">A legacy in pictures.</h2>
+          <p>Books, appearances, and recognition from Sophia Stewart&apos;s ongoing public journey.</p>
+        </div>
+        <div className="recognition-grid">
+          {recognitionImages.map((image) => (
+            <figure key={image.src}><img src={image.src} alt={image.alt} /></figure>
+          ))}
+        </div>
       </section>
 
       <section className="newsletter-section" id="newsletter">
@@ -177,7 +252,32 @@ function SophiaStewartPage() {
         </form>
       </section>
 
-      <footer id="contact">
+      <section className="contact-section content-section" id="contact">
+        <div className="contact-portrait">
+          <img src={contactPortraitAsset.url} alt="Portrait of Sophia Stewart" />
+        </div>
+        <div className="contact-copy">
+          <p className="section-kicker">Contact</p>
+          <h2>Connect with Sophia.</h2>
+          <dl>
+            <div><dt>Business</dt><dd>All Eyes On Me, Inc.</dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:sophiastewart10@yahoo.com">sophiastewart10@yahoo.com</a></dd></div>
+          </dl>
+          <div className="contact-socials">
+            <a className="button button-outline" href="https://www.facebook.com/SophiaStewartMatrix/" target="_blank" rel="noreferrer">Facebook</a>
+            <a className="button button-outline" href="https://www.facebook.com/reel/1408308784081129" target="_blank" rel="noreferrer">Featured Reel</a>
+            <span className="social-placeholder">Instagram coming soon</span>
+          </div>
+          <p className="contact-note">Contact info to be confirmed and updated.</p>
+        </div>
+      </section>
+
+      <aside className="rights-notice" aria-label="Rights and legal notice">
+        <strong>Rights &amp; Legal Notice</strong>
+        <p>All original writings, photographs, artwork, names, and related materials are presented for informational and promotional purposes. Copyrights and trademarks remain with their respective owners. Retail and video links lead to independent third-party services; no affiliation or endorsement is implied.</p>
+      </aside>
+
+      <footer>
         <div className="footer-top">
           <a className="brand footer-brand" href="#home">
             <span>Sophia Stewart</span>
@@ -187,9 +287,8 @@ function SophiaStewartPage() {
             {navItems.map((item) => <a href={`#${item.toLowerCase()}`} key={item}>{item}</a>)}
           </div>
           <div className="social-links" aria-label="Social media">
-            <a href="#contact" aria-label="Instagram">ig</a>
-            <a href="#contact" aria-label="YouTube">yt</a>
-            <a href="#contact" aria-label="Facebook">f</a>
+            <a href={interviewPlaylistUrl} target="_blank" rel="noreferrer" aria-label="YouTube">yt</a>
+            <a href="https://www.facebook.com/SophiaStewartMatrix/" target="_blank" rel="noreferrer" aria-label="Facebook">f</a>
           </div>
         </div>
         <div className="footer-bottom">
