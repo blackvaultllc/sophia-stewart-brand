@@ -98,7 +98,7 @@ const interviews = [
   { label: "Interview XVII", url: "https://www.youtube.com/watch?v=EBz1nwiUc0I" },
 ];
 
-const amazonBooksUrl = sellers[0].url("Sophia Stewart books");
+const amazonBooksUrl = `https://www.amazon.com/s?k=${encodeURIComponent("Sophia Stewart books")}`;
 
 const interviewPlaylistUrl = "https://www.youtube.com/playlist?list=PL-cC-ldlOk61ULP39M65Nkmv6XqpR0jDL";
 
@@ -116,8 +116,41 @@ const recognitionImages = [
 const navItems = ["Home", "About", "Media", "Books", "Newsletter", "Contact"];
 
 function SophiaStewartPage() {
+  const [showAmazonPopup, setShowAmazonPopup] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowAmazonPopup(true), 2500);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <main className="site-shell">
+      {showAmazonPopup && (
+        <div className="amazon-popup-backdrop" role="presentation" onClick={() => setShowAmazonPopup(false)}>
+          <div
+            className="amazon-popup"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Sophia Stewart books on Amazon"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="amazon-popup-close"
+              aria-label="Close"
+              onClick={() => setShowAmazonPopup(false)}
+            >
+              ×
+            </button>
+            <p className="section-kicker">Available Now</p>
+            <h2>Find Sophia&apos;s books on Amazon</h2>
+            <p>Explore The Third Eye, Mother of the Matrix, and more — available on Amazon today.</p>
+            <a className="button button-solid" href={amazonBooksUrl} target="_blank" rel="noreferrer">
+              Shop on Amazon
+            </a>
+          </div>
+        </div>
+      )}
       <header className="site-header">
         <a className="brand" href="#home" aria-label="Sophia Stewart home">
           <span>Sophia Stewart</span>
