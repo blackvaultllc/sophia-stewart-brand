@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import sophiaHero from "../assets/sophia-stewart-hero.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -90,8 +91,8 @@ function SophiaStewartPage() {
             <a className="button button-outline" href="#media">Watch Interviews</a>
           </div>
         </div>
-        <div className="hero-photo" role="img" aria-label="Portrait of Sophia Stewart in a warm library setting">
-          <span>Portrait image · /images/sophia-stewart-hero.jpg</span>
+        <div className="hero-photo">
+          <img src={sophiaHero.url} alt="Sophia Stewart seated in a warm library setting" />
         </div>
       </section>
 
