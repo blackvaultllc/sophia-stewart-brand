@@ -230,7 +230,7 @@ footer { padding: 58px clamp(24px, 6vw, 94px) 22px; background: var(--background
   .book-copy { min-width: 0; }
   .book-eyebrow { font-size: 7px; }
   .book-copy h3 { margin: 5px 0 7px; font-size: 17px; line-height: 1.18; }
-  .book-copy > p:last-of-type { margin: 0; font-family: var(--font-sans); font-size: 10px; line-height: 1.45; }
+  .book-copy > p:not(.book-eyebrow):not(.buy-label) { margin: 0; color: var(--muted-foreground); font-family: var(--font-sans); font-size: 10px; line-height: 1.45; }
   .buy-label { margin: 11px 0 7px; font-size: 7px !important; }
   .buy-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
   .buy-links a {
