@@ -116,9 +116,12 @@ nav a:hover::after, nav a.active::after { transform: scaleX(1); }
 .media-section { display: grid; grid-template-columns: 1.3fr 1fr auto; gap: 44px; align-items: center; border-bottom: 1px solid var(--border); }
 .media-section h2 { margin-bottom: 0; }
 .interview-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-.interview-link { min-height: 70px; display: flex; align-items: center; gap: 13px; padding: 16px 18px; background: var(--background); color: var(--muted-foreground); font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
+.interview-link { min-height: 76px; display: grid; grid-template-columns: auto auto 1fr auto; align-items: center; gap: 13px; padding: 16px 18px; background: var(--background); color: var(--muted-foreground); font-size: 10px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; }
 .interview-link:hover { color: var(--primary); background: var(--secondary); }
 .play-icon { color: var(--primary); }
+.interview-number { min-width: 28px; color: var(--foreground); font-family: var(--font-serif); font-size: 16px; text-transform: none; }
+.interview-title { letter-spacing: 0; text-transform: none; }
+.interview-watch { color: var(--primary); font-size: 8px; }
 
 .recognition-section { background: var(--secondary); }
 .recognition-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 210px; gap: 12px; }
@@ -255,9 +258,16 @@ footer { padding: 58px clamp(24px, 6vw, 94px) 22px; background: var(--background
   .media-section { display: block; }
   .media-section .button { margin-top: 28px; }
   .interview-grid { grid-template-columns: 1fr; margin-top: 28px; }
+  .interview-link { min-height: 64px; grid-template-columns: 26px 28px minmax(0, 1fr) auto; gap: 8px; padding: 12px 14px; border-radius: 6px; }
+  .interview-grid { gap: 8px; border: 0; background: transparent; }
+  .interview-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 9px; }
+  .recognition-section { padding-right: 14px; padding-left: 14px; }
+  .recognition-section .section-heading { margin-right: 8px; margin-left: 8px; }
   .recognition-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-  .recognition-grid figure, .recognition-grid figure:first-child, .recognition-grid figure:nth-child(4), .recognition-grid figure:nth-child(5) { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 3; }
-  .recognition-grid figure:first-child { aspect-ratio: 16 / 9; }
+  .recognition-grid { display: flex; gap: 12px; overflow-x: auto; padding: 0 8px 12px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .recognition-grid::-webkit-scrollbar { display: none; }
+  .recognition-grid figure, .recognition-grid figure:first-child, .recognition-grid figure:nth-child(4), .recognition-grid figure:nth-child(5) { flex: 0 0 84%; aspect-ratio: 4 / 3; border-radius: 8px; scroll-snap-align: center; }
+  .recognition-video { margin: 16px 8px 0; }
   .contact-portrait, .contact-portrait img { min-height: 420px; }
   .contact-copy dl div { grid-template-columns: 1fr; gap: 7px; }
   .contact-socials { align-items: stretch; flex-direction: column; }
@@ -315,4 +325,106 @@ footer { padding: 58px clamp(24px, 6vw, 94px) 22px; background: var(--background
   font-size: 1.6rem;
   line-height: 1;
   cursor: pointer;
+}
+
+/* Mother of the Matrix Fan Club */
+.club-shell, .moderation-shell { min-height: 100vh; background: var(--background); color: var(--foreground); }
+.club-header { position: sticky; top: 0; z-index: 40; min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 12px clamp(18px, 5vw, 72px); border-bottom: 1px solid var(--border); background: oklch(0.09 0.006 75 / 94%); backdrop-filter: blur(16px); }
+.club-brand { display: flex; flex-direction: column; min-width: 0; }
+.club-brand span { color: var(--primary); font-family: var(--font-serif); font-size: clamp(18px, 2vw, 25px); font-weight: 700; text-transform: uppercase; }
+.club-brand small { overflow: hidden; color: var(--foreground); font-size: 8px; font-weight: 600; letter-spacing: .14em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+.club-header-actions { flex: 0 0 auto; }
+.club-intro { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(270px, .6fr); gap: 60px; align-items: end; padding: 84px clamp(22px, 7vw, 110px) 70px; border-bottom: 1px solid var(--border); background: linear-gradient(120deg, var(--background), var(--secondary)); }
+.club-intro h1 { margin: 0; font-family: var(--font-serif); font-size: clamp(46px, 7vw, 86px); font-weight: 500; line-height: .98; }
+.club-intro h1 em { color: var(--primary); font-style: normal; }
+.club-intro > div > p:last-of-type { max-width: 650px; color: var(--muted-foreground); line-height: 1.75; }
+.club-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.club-principles { padding: 26px; border-left: 2px solid var(--primary); background: var(--surface-raised); }
+.club-principles > svg { width: 28px; height: 28px; color: var(--primary); }
+.club-principles strong { display: block; margin: 14px 0 8px; font-family: var(--font-serif); font-size: 20px; }
+.club-principles p { margin: 0; color: var(--muted-foreground); font-size: 12px; line-height: 1.65; }
+.club-notice { display: flex; align-items: center; gap: 10px; margin: 18px auto 0; padding: 13px 18px; width: min(92%, 700px); border: 1px solid var(--border); color: var(--cream); background: var(--surface-raised); font-size: 12px; }
+.club-notice svg { width: 17px; color: var(--primary); }
+.club-layout { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: clamp(32px, 5vw, 72px); max-width: 1380px; margin: auto; padding: 72px clamp(18px, 6vw, 90px); }
+.club-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
+.club-section-heading h2, .club-sidebar h2, .club-form-panel h2, .moderation-shell h1 { margin: 0; font-family: var(--font-serif); font-weight: 500; }
+.club-section-heading h2 { font-size: clamp(32px, 4vw, 50px); }
+.club-section-heading > span, .moderation-count { color: var(--muted-foreground); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.club-feed { min-width: 0; }
+.thread-card { margin-bottom: 14px; padding: 26px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-raised); }
+.thread-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
+.thread-category, .official-badge { color: var(--primary); font-size: 8px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.official-badge { display: flex; align-items: center; gap: 4px; color: var(--cream); }
+.official-badge svg { width: 12px; height: 12px; color: var(--primary); }
+.thread-card h3 { margin: 12px 0 9px; font-family: var(--font-serif); font-size: clamp(22px, 2.5vw, 30px); font-weight: 500; }
+.thread-card > p { margin: 0; color: var(--muted-foreground); font-size: 13px; line-height: 1.75; }
+.thread-footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 22px; padding-top: 17px; border-top: 1px solid var(--border); }
+.thread-author, .member-row { display: flex; align-items: center; gap: 10px; min-width: 0; font-size: 11px; }
+.thread-author > span:last-child, .member-row > span:nth-child(2) { min-width: 0; }
+.thread-author small, .member-row small { display: block; margin-top: 2px; color: var(--muted-foreground); font-size: 8px; }
+.member-avatar { width: 34px; height: 34px; flex: 0 0 auto; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--border); border-radius: 50%; color: var(--primary); background: var(--muted); font-family: var(--font-serif); }
+.member-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.comment-panel { margin-top: 18px; padding: 18px; border-left: 2px solid var(--primary); background: var(--background); }
+.comment { padding: 13px 0; border-bottom: 1px solid var(--border); }
+.comment strong { font-size: 10px; }
+.comment p, .empty-comments { margin: 6px 0; color: var(--muted-foreground); font-size: 12px; line-height: 1.6; }
+.comment-panel form { display: grid; gap: 10px; margin-top: 15px; }
+.comment-panel form button { justify-self: end; }
+.club-sidebar { display: grid; align-content: start; gap: 14px; }
+.club-sidebar > section { padding: 23px; border: 1px solid var(--border); border-radius: 8px; background: var(--secondary); }
+.club-sidebar > section > svg { width: 22px; color: var(--primary); }
+.club-sidebar h2 { margin-top: 10px; font-size: 20px; }
+.club-sidebar p, .club-sidebar li { color: var(--muted-foreground); font-size: 11px; line-height: 1.65; }
+.club-sidebar ul { padding-left: 17px; }
+.member-row { padding: 11px 0; border-top: 1px solid var(--border); }
+.member-row > span:nth-child(2) { flex: 1; }
+.member-row button { width: 32px; padding: 0; color: var(--primary); }
+.club-modal-backdrop { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; overflow-y: auto; padding: 20px; background: oklch(0.02 0 0 / 80%); backdrop-filter: blur(5px); }
+.club-modal { position: relative; width: min(100%, 500px); max-height: calc(100vh - 40px); overflow-y: auto; padding: 36px; border: 1px solid var(--primary); border-radius: 8px; background: var(--surface-raised); box-shadow: var(--shadow-deep); }
+.club-modal-close { position: absolute; top: 8px; right: 12px; width: 36px; height: 36px; border: 0; color: var(--primary); background: transparent; font-size: 24px; cursor: pointer; }
+.club-form-panel h2 { font-size: 34px; }
+.club-form-panel > p:not(.section-kicker) { color: var(--muted-foreground); font-size: 12px; line-height: 1.6; }
+.club-form-panel form { display: grid; gap: 14px; margin-top: 18px; }
+.club-form-panel label { display: grid; gap: 7px; color: var(--cream); font-size: 9px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.club-form-panel input, .club-form-panel textarea, .club-form-panel select, .comment-panel textarea { border-color: var(--border); color: var(--foreground); background: var(--background); }
+.club-form-panel select { min-height: 38px; padding: 0 10px; border-radius: 5px; }
+.club-form-panel > .button { width: 100%; margin-top: 16px; }
+.form-divider { display: flex; align-items: center; gap: 12px; margin: 17px 0; color: var(--muted-foreground); font-size: 8px; text-transform: uppercase; }
+.form-divider::before, .form-divider::after { content: ""; height: 1px; flex: 1; background: var(--border); }
+.form-message { margin: 0; color: var(--primary); font-size: 10px; }
+.form-switch { width: 100%; margin-top: 16px; border: 0; color: var(--primary); background: transparent; font-size: 10px; cursor: pointer; }
+.moderation-shell { padding: clamp(28px, 6vw, 80px); }
+.moderation-shell > header { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.moderation-shell h1 { font-size: clamp(38px, 5vw, 64px); }
+.moderation-count { margin: 25px 0; }
+.moderation-list { display: grid; gap: 12px; }
+.moderation-list article { display: grid; grid-template-columns: 1fr auto; gap: 28px; padding: 24px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-raised); }
+.moderation-list article span { color: var(--primary); font-size: 8px; text-transform: uppercase; }
+.moderation-list article h2 { margin: 8px 0; font-family: var(--font-serif); font-size: 23px; }
+.moderation-list article p { margin: 0; color: var(--muted-foreground); font-size: 12px; line-height: 1.6; }
+.moderation-actions { display: flex; align-items: center; gap: 8px; }
+.moderation-denied { display: grid; place-content: center; justify-items: center; min-height: 100vh; text-align: center; }
+.moderation-denied > svg { width: 44px; height: 44px; color: var(--primary); }
+
+@media (max-width: 760px) {
+  .club-header { min-height: 68px; }
+  .club-header-actions .button { width: auto; padding: 0 12px; font-size: 9px; }
+  .club-intro { grid-template-columns: 1fr; gap: 28px; padding: 58px 20px 42px; }
+  .club-intro h1 { font-size: 46px; }
+  .club-intro > div > p:last-of-type { font-size: 12px; }
+  .club-actions { display: grid; }
+  .club-actions .button { width: 100%; }
+  .club-principles { padding: 20px; }
+  .club-layout { grid-template-columns: 1fr; padding: 52px 14px; }
+  .club-section-heading { align-items: start; flex-direction: column; margin: 0 7px 23px; }
+  .thread-card { padding: 18px 16px; }
+  .thread-card h3 { font-size: 22px; }
+  .thread-card > p { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 4; font-size: 12px; }
+  .thread-footer { align-items: stretch; flex-direction: column; }
+  .thread-footer .button { width: 100%; }
+  .club-sidebar { grid-template-columns: 1fr; }
+  .club-modal { padding: 34px 20px 24px; }
+  .moderation-shell { padding: 28px 14px; }
+  .moderation-shell > header, .moderation-list article { grid-template-columns: 1fr; align-items: stretch; flex-direction: column; }
+  .moderation-actions { display: grid; grid-template-columns: 1fr 1fr; }
 }

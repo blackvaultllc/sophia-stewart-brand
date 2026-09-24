@@ -1,5 +1,27 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1790221840555,
+      "tag": "0000_create_moderated_fan_club",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790221877006,
+      "tag": "0001_secure_fan_avatar_storage",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790221962520,
+      "tag": "0002_assign_verified_back_office_role",
+      "breakpoints": true
+    }
+  ]
 }
