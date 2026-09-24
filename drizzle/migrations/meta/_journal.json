@@ -15,6 +15,13 @@
       "when": 1790221877006,
       "tag": "0001_secure_fan_avatar_storage",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790221962520,
+      "tag": "0002_assign_verified_back_office_role",
+      "breakpoints": true
     }
   ]
 }
