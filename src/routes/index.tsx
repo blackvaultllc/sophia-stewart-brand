@@ -12,6 +12,8 @@ import congressionalFolderAsset from "../assets/congressional-recognition-folder
 import congressionalCertificateAsset from "../assets/congressional-recognition-certificate.jpg.asset.json";
 import bookCollectionAsset from "../assets/sophia-stewart-books-collection.jpg.asset.json";
 import matrixCollageAsset from "../assets/sophia-stewart-matrix-collage.jpg.asset.json";
+import luxuryGalaAsset from "../assets/luxury-gala-flyer.jpg.asset.json";
+import sophiaVideoAsset from "../assets/sophia-stewart-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -101,6 +103,7 @@ const recognitionImages = [
   { src: congressionalCertificateAsset.url, alt: "Congressional certificate presented to Sophia Stewart" },
   { src: bookCollectionAsset.url, alt: "Collection of books by Sophia Stewart" },
   { src: matrixCollageAsset.url, alt: "Sophia Stewart and Matrix-themed collage" },
+  { src: luxuryGalaAsset.url, alt: "Luxury Gala Academy Award viewing flyer featuring Sophia Stewart" },
 ];
 
 const navItems = ["Home", "About", "Media", "Books", "Newsletter", "Contact"];
@@ -236,6 +239,9 @@ function SophiaStewartPage() {
           {recognitionImages.map((image) => (
             <figure key={image.src}><img src={image.src} alt={image.alt} /></figure>
           ))}
+        </div>
+        <div className="recognition-video">
+          <video src={sophiaVideoAsset.url} controls playsInline preload="metadata" />
         </div>
       </section>
 
