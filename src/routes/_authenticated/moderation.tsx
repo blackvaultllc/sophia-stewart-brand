@@ -40,7 +40,9 @@ function ModerationPage() {
   useEffect(() => { void loadQueue(); }, []);
 
   async function review(item: QueueItem, status: "approved" | "rejected") {
-    await supabase.from(item.kind === "thread" ? "threads" : "comments").update({ status, reviewed_at: new Date().toISOString(), reviewed_by: user.id }).eq("id", item.id);
+    const values = { status, reviewed_at: new Date().toISOString(), reviewed_by: user.id };
+    if (item.kind === "thread") await supabase.from("threads").update(values).eq("id", item.id);
+    else await supabase.from("comments").update(values).eq("id", item.id);
     setItems((current) => current.filter((entry) => entry.id !== item.id));
   }
 

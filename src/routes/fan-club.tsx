@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { BookOpen, CalendarDays, CheckCircle2, LogIn, MessageCircle, Plus, ShieldCheck, UserPlus, Users } from "lucide-react";
+import { BookOpen, CalendarDays, CheckCircle2, LogIn, MessageCircle, Plus, ShieldCheck, UserMinus, UserPlus, Users } from "lucide-react";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
@@ -56,6 +56,8 @@ function FanClubPage() {
   const [threads, setThreads] = useState<Thread[]>([]);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
   const [comments, setComments] = useState<Record<string, Comment[]>>({});
+  const [avatarUrls, setAvatarUrls] = useState<Record<string, string>>({});
+  const [following, setFollowing] = useState<string[]>([]);
   const [openThread, setOpenThread] = useState<string | null>(null);
   const [authOpen, setAuthOpen] = useState(false);
   const [composeOpen, setComposeOpen] = useState(false);
@@ -73,6 +75,11 @@ function FanClubPage() {
     ]);
     setThreads((threadRows ?? []) as Thread[]);
     setProfiles(Object.fromEntries(((profileRows ?? []) as Profile[]).map((item) => [item.id, item])));
+    const avatarEntries = await Promise.all(((profileRows ?? []) as Profile[]).filter((item) => item.avatar_path).map(async (item) => {
+      const { data } = await supabase.storage.from("fan-avatars").createSignedUrl(item.avatar_path ?? "", 3600);
+      return [item.id, data?.signedUrl ?? ""] as const;
+    }));
+    setAvatarUrls(Object.fromEntries(avatarEntries));
   }
 
   async function loadCurrentProfile(activeUser: User | null) {
@@ -83,6 +90,8 @@ function FanClubPage() {
     const { data } = await supabase.from("profiles").select("id,display_name,handle,avatar_path,fan_since_year,bio").eq("id", activeUser.id).maybeSingle();
     setProfile((data as Profile | null) ?? null);
     if (!data) setProfileOpen(true);
+    const { data: followRows } = await supabase.from("follows").select("following_id").eq("follower_id", activeUser.id);
+    setFollowing((followRows ?? []).map((row) => row.following_id));
   }
 
   useEffect(() => {
@@ -196,6 +205,17 @@ function FanClubPage() {
     setMessage("Your comment was sent for approval.");
   }
 
+  async function toggleFollow(memberId: string) {
+    if (!user) return setAuthOpen(true);
+    if (following.includes(memberId)) {
+      await supabase.from("follows").delete().eq("follower_id", user.id).eq("following_id", memberId);
+      setFollowing((current) => current.filter((id) => id !== memberId));
+    } else {
+      await supabase.from("follows").insert({ follower_id: user.id, following_id: memberId });
+      setFollowing((current) => [...current, memberId]);
+    }
+  }
+
   return (
     <main className="club-shell">
       <header className="club-header">
@@ -242,7 +262,7 @@ function FanClubPage() {
                 <h3>{thread.title}</h3>
                 <p>{thread.body}</p>
                 <div className="thread-footer">
-                  <div className="thread-author"><span className="member-avatar">{author?.display_name?.slice(0, 1) ?? "S"}</span><span>{author?.display_name ?? "Sophia Stewart Fan Club"}<small>{author?.fan_since_year ? `Fan since ${author.fan_since_year}` : "Community host"}</small></span></div>
+                  <div className="thread-author"><span className="member-avatar">{author && avatarUrls[author.id] ? <img src={avatarUrls[author.id]} alt="" /> : author?.display_name?.slice(0, 1) ?? "S"}</span><span>{author?.display_name ?? "Sophia Stewart Fan Club"}<small>{author?.fan_since_year ? `Fan since ${author.fan_since_year}` : "Community host"}</small></span></div>
                   <Button variant="ghost" size="sm" onClick={() => void loadComments(thread.id)}><MessageCircle /> Join conversation</Button>
                 </div>
                 {openThread === thread.id && (
@@ -257,7 +277,7 @@ function FanClubPage() {
         </div>
 
         <aside className="club-sidebar">
-          <section><Users /><h2>Member spotlights</h2><p>{memberIds.length ? `${memberIds.length} fans are building this community.` : "Be among the first fans to create a profile."}</p></section>
+          <section><Users /><h2>Member spotlights</h2><p>{memberIds.length ? `${memberIds.length} fans are building this community.` : "Be among the first fans to create a profile."}</p>{memberIds.slice(0, 5).map((id) => { const member = profiles[id]; if (!member || id === user?.id) return null; const isFollowing = following.includes(id); return <div className="member-row" key={id}><span className="member-avatar">{avatarUrls[id] ? <img src={avatarUrls[id]} alt="" /> : member.display_name.slice(0, 1)}</span><span><strong>{member.display_name}</strong><small>@{member.handle}</small></span><Button variant="ghost" size="sm" aria-label={isFollowing ? `Unfollow ${member.display_name}` : `Follow ${member.display_name}`} onClick={() => void toggleFollow(id)}>{isFollowing ? <UserMinus /> : <UserPlus />}</Button></div>; })}</section>
           <section><BookOpen /><h2>Conversation guide</h2><ul><li>Celebrate the books and creative journey.</li><li>Share interpretations, not personal attacks.</li><li>Keep claims respectful and relevant.</li><li>Protect everyone&apos;s privacy.</li></ul></section>
           <section><CalendarDays /><h2>Your fan story</h2><p>Add the year you became a fan so fellow readers can celebrate your journey.</p></section>
         </aside>
