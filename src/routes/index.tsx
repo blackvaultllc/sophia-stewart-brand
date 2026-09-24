@@ -91,6 +91,8 @@ const interviews = [
   { label: "Interview XIII", url: "https://www.youtube.com/watch?v=RT4mGNKQtrM" },
 ];
 
+const interviewPlaylistUrl = "https://www.youtube.com/playlist?list=PL-cC-ldlOk61ULP39M65Nkmv6XqpR0jDL";
+
 const recognitionImages = [
   { src: galaPortraitAsset.url, alt: "Sophia Stewart at the eZWay Golden Gala" },
   { src: galaPosterAsset.url, alt: "eZWay Golden Gala celebrity attendees announcement featuring Sophia Stewart" },
@@ -213,7 +215,7 @@ function SophiaStewartPage() {
           <h2>Ideas that deserve to be heard.</h2>
         </div>
         <p>Watch Sophia&apos;s interviews and appearances in her own words.</p>
-        <a className="button button-outline" href={interviews[0].url} target="_blank" rel="noreferrer">Watch Playlist</a>
+        <a className="button button-outline" href={interviewPlaylistUrl} target="_blank" rel="noreferrer">Watch Playlist</a>
         <div className="interview-grid">
           {interviews.slice(1).map((interview) => (
             <a key={interview.url} className="interview-link" href={interview.url} target="_blank" rel="noreferrer">
@@ -285,7 +287,7 @@ function SophiaStewartPage() {
             {navItems.map((item) => <a href={`#${item.toLowerCase()}`} key={item}>{item}</a>)}
           </div>
           <div className="social-links" aria-label="Social media">
-            <a href={interviews[0].url} target="_blank" rel="noreferrer" aria-label="YouTube">yt</a>
+            <a href={interviewPlaylistUrl} target="_blank" rel="noreferrer" aria-label="YouTube">yt</a>
             <a href="https://www.facebook.com/SophiaStewartMatrix/" target="_blank" rel="noreferrer" aria-label="Facebook">f</a>
           </div>
         </div>
